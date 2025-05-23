@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "esp-bsp.h": "c",
+    "lv_demos.h": "c",
+    "lv_demo_music.h": "c",
+    "lv_demo_music_main.h": "c"
+  }
+}

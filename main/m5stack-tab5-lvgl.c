@@ -1,6 +1,9 @@
+#define LV_USE_DEMO_MUSIC 1
+// #include "gui/lv_demo_music.h"
 #include "lv_demos.h"
 #include <bsp/esp-bsp.h>
 #include <stdio.h>
+#include "mp3player.h"
 
 extern esp_lcd_touch_handle_t _lcd_touch_handle;
 
@@ -43,6 +46,10 @@ void app_main(void) {
 
   i2c_master_bus_handle_t i2c_bus_handle = bsp_i2c_get_handle();
   bsp_io_expander_pi4ioe_init(i2c_bus_handle);
+  
+  bsp_codec_init();
+  player_init();
+  usb_host_init();
 
   bsp_reset_tp();
   lvDisp = bsp_display_start();
