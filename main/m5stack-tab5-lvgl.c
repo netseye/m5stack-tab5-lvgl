@@ -1,6 +1,4 @@
-#define LV_USE_DEMO_MUSIC 1
-// #include "gui/lv_demo_music.h"
-#include "lv_demos.h"
+// #include "lv_demos.h"
 #include <bsp/esp-bsp.h>
 #include <stdio.h>
 #include "mp3player.h"
@@ -61,7 +59,10 @@ void app_main(void) {
   lv_indev_set_read_cb(lvTouchpad, lvgl_read_cb);
   lv_indev_set_display(lvTouchpad, lvDisp);
 
-  lv_demo_music();
+
+  mp3player_start();
+//   lv_demo_music();
+
 
   bsp_display_unlock();
 }

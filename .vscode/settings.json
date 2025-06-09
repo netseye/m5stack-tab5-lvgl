@@ -3,6 +3,12 @@
     "esp-bsp.h": "c",
     "lv_demos.h": "c",
     "lv_demo_music.h": "c",
-    "lv_demo_music_main.h": "c"
+    "lv_demo_music_main.h": "c",
+    "stdio.h": "c",
+    "__locale": "c",
+    "locale": "c",
+    "spectrum_1.h": "c",
+    "lv_demo_music_list.h": "c",
+    "ios": "c"
   }
 }

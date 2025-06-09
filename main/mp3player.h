@@ -34,6 +34,7 @@ uac_host_device_handle_t get_audio_player_handle(void);
 
 void player_init(void);
 void usb_host_init(void);
+void mp3player_start(void);
 
 /**
  * Macro to convert version number into an integer

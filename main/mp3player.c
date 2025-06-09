@@ -5,13 +5,14 @@
 #include "file_iterator.h"
 #include <bsp/esp-bsp.h>
 #include "esp_log.h"
+#include "gui_music/lv_demo_music.h"
 
 #define TAG "mp3player"
 
 #define USB_HOST_TASK_PRIORITY 5
 #define UAC_TASK_PRIORITY 5
 #define USER_TASK_PRIORITY 2
-#define DEFAULT_VOLUME 60
+#define DEFAULT_VOLUME 100
 
 static audio_player_t audio_player_type = AUDIO_PLAYER_I2S;
 static QueueHandle_t s_event_queue = NULL;
@@ -21,7 +22,10 @@ static FILE *s_fp = NULL;
 static void uac_device_callback(uac_host_device_handle_t uac_device_handle, const uac_host_device_event_t event, void *arg);
 static file_iterator_instance_t *file_iterator = NULL;
 
-
+file_iterator_instance_t *get_file_iterator(void)
+{
+    return file_iterator;
+}
 
 uint8_t get_sys_volume()
 {
@@ -411,18 +415,24 @@ void player_init(void)
 
 
 
-    char filename[128];
-    int retval = file_iterator_get_full_path_from_index(file_iterator, 0, filename, sizeof(filename));
-    if (retval == 0) {
-        ESP_LOGE(TAG, "unable to retrieve filename");
-        return;
-    }
+    // char filename[128];
+    // int retval = file_iterator_get_full_path_from_index(file_iterator, 0, filename, sizeof(filename));
+    // if (retval == 0) {
+    //     ESP_LOGE(TAG, "unable to retrieve filename");
+    //     return;
+    // }
 
-    FILE *fp = fopen(filename, "rb");
-    if (fp) {
-        ESP_LOGI(TAG, "Playing '%s'", filename);
-        audio_player_play(fp);
-    } else {
-        ESP_LOGE(TAG, "unable to open index %d, filename '%s'", 0, filename);
-    }
+    // FILE *fp = fopen(filename, "rb");
+    // if (fp) {
+    //     ESP_LOGI(TAG, "Playing '%s'", filename);
+    //     audio_player_play(fp);
+    // } else {
+    //     ESP_LOGE(TAG, "unable to open index %d, filename '%s'", 0, filename);
+    // }
+}
+
+void mp3player_start(void)
+{
+    // Start the music demo
+    lv_demo_music(file_iterator);
 }
